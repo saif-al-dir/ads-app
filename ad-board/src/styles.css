@@ -1,0 +1,38 @@
+/* src/styles.css */
+
+/* Ensure the body takes the full height of the viewport */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Main container to push footer to the bottom */
+.container {
+/* Full height of the viewport */
+/* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content area should grow to fill available space */
+.container > .mt-4 {
+  flex: 1; /* Allow this section to grow */
+}
+
+/* Footer styles */
+footer {
+  background-color: #f8f9fa; /* Light background color */
+  padding: 10px 0; /* Padding for the footer */
+  position: relative; /* Position relative to the container */
+  bottom: 0; /* Align to the bottom */
+  width: 100%; /* Full width */
+}
+
+h1 {
+    text-align: center;
+    padding: 2rem;
+}
+
+.navbar-brand {
+    padding-left: 1rem;
+}
