@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node server.js",
     "client": "cd ./client && npm start",
-    "dev": "concurrently \"npm start\" \"npm run client\""
+    "dev": "concurrently \"npm start\" \"npm run client\"",
+    "build": "cd ./client && npm install && npm run build",
+    "serve": "npm run build && node server.js"
   },
   "author": "",
   "license": "ISC",
