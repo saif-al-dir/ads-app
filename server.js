@@ -7,8 +7,12 @@ const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGO_URI;
 
 const app = express();
+
+// CORS configuration for development
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN, // Your React dev server
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.CLIENT_ORIGIN 
+    : 'http://localhost:3000', // React dev server default port
   credentials: true
 }));
 
@@ -23,7 +27,7 @@ mongoose.connect(MONGO_URI)
 app.use('/api/ads', require('./routes/ads'));
 app.use('/auth', require('./routes/auth'));
 
-// Serve frontend in production
+// Serve frontend only in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
   app.get('*', (req, res) => {
@@ -33,4 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Frontend should be running on http://localhost:3000');
+  }
 });
